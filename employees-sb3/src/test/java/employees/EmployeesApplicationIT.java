@@ -19,7 +19,7 @@ class EmployeesApplicationIT {
 
 	@Container
 	@ServiceConnection
-	static PostgreSQLContainer<?> mariadb = new PostgreSQLContainer<>("postgresql");
+	static PostgreSQLContainer<?> postgresql = new PostgreSQLContainer<>("postgres");
 
 
 	@Test

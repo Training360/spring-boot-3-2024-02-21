@@ -45,3 +45,12 @@ Accept: application/json
 
 ### Delete employee
 DELETE http://localhost:8080/api/employees/1
+
+### Actuators
+GET http://localhost:8080/actuator
+
+### Info Actuator
+GET http://localhost:8080/actuator/info
+
+### Http Exchange
+GET http://localhost:8080/actuator/httpexchanges

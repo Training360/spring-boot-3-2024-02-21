@@ -14,9 +14,9 @@ public class EmployeesTestApplication {
     @Bean
     @ServiceConnection
     @RestartScope
-    public PostgreSQLContainer<?> mariadDbContainer() {
-        return new PostgreSQLContainer<>("postgresql")
-                .withCreateContainerCmdModifier(mod -> mod.withName("employees-test-mariadb"))
+    public PostgreSQLContainer<?> postgresqlDbContainer() {
+        return new PostgreSQLContainer<>("postgres")
+                .withCreateContainerCmdModifier(mod -> mod.withName("employees-test-postgres"))
                 .withReuse(true);
     }
 
