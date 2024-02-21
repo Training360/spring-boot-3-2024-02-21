@@ -36,7 +36,7 @@ https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.2-Release-Note
 * A Spring Boot 3.2 verzióban változott a `JarLauncher` csomagja, helyesen
   `org.springframework.boot.loader.launch.JarLauncher`.
 
-Spring Boot 3.3
+Spring Boot 3.3 (M2)
 https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.3-Release-Notes
 
 * `JwtAuthenticationConverter`
@@ -44,7 +44,7 @@ https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.3-Release-Note
 ### Alkalmazás indítása
 
 ```shell
-docker run -d -e POSTGRES_DB=employees -e POSTGRES_USER=employees -e POSTGRES_PASSWORD=employees -p 5432:5432  --name employees-postgres postgres
+docker run -d -e POSTGRES_DB=employees -e POSTGRES_USER=employees -e POSTGRES_PASSWORD=employees -p 5432:5432 --name employees-postgres postgres
 ```
 
 ```
@@ -79,6 +79,11 @@ http://localhost:9411
 
 ### Native image
 
+```shell
+mvnw spring-boot:build-image
+mvnw -Pnative spring-boot:build-image
+```
+
 ### Információk megjelenítése
 
 Az új Git plugin:
@@ -90,13 +95,28 @@ Az új Git plugin:
 </plugin>
 ```
 
-
+```http
+### Info actuator
+GET http://localhost:8080/actuator/info
+```
 
 ### Actuator - HttpTrace helyett HttpExchange
 
 A `HttpTraceRepository` helyett `HttpExchangeRepository`, 
 az `InMemoryHttpTraceRepository` helyett `InMemoryHttpExchangeRepository`,
 és a `/actuator/httptrace` helyett `/actuator/httpexchanges` URL használható.
+
+```java
+@Bean
+public HttpExchangeRepository httpExchangeRepository() {
+    return new InMemoryHttpExchangeRepository();
+}
+```
+
+```http
+### Http Exchange
+GET http://localhost:8080/actuator/httpexchanges
+```
 
 ### Swagger UI
 
@@ -108,12 +128,39 @@ az `InMemoryHttpTraceRepository` helyett `InMemoryHttpExchangeRepository`,
 </dependency>
 ```
 
+http://localhost:8080/swagger-ui.html
+
 ## Spring Boot 3.1
 
+### Testcontainers
+
+* `EmployeesApplicationIT`
+* `EmployeesTestApplication`
+
+### Docker compose
+
+```xml
+<dependency>
+    <groupId>net.ttddyy.observation</groupId>
+    <artifactId>datasource-micrometer-spring-boot</artifactId>
+    <version>1.0.2</version>
+</dependency>
+```
+
 ## Spring Boot 3.2
+
+## RestClient support
+
+`employees-sb3-client`
+
+* Reactive
+* Lombok
+* Actuator
+* Zipkin
 
 ### Logging
 
 ```plain
 2024-02-21T13:21:13.784+01:00  INFO 24120 --- [employees] [nio-8080-exec-1] [65d5eab9c4c73ec25f5fa1e23817a27a-2db1c92a9ca868f9] employees.EmployeesService               : List employees
-``````
+```
+
