@@ -5,13 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.ParameterizedTypeReference;
+//import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.support.RestClientAdapter;
-import org.springframework.web.reactive.function.client.WebClient;
+//import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
-import java.util.List;
+//import java.util.List;
 
 @SpringBootApplication
 @Slf4j
@@ -27,7 +27,7 @@ public class EmployeesSb3ClientDemoApplication implements CommandLineRunner {
 	private RestClient.Builder restClientBuilder;
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 		log.info("Application run");
 
 //		var webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
